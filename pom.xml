@@ -67,8 +67,8 @@
         </pluginManagement>
     </build>
 
-    <!-- Child modules will be added here as they are created -->
     <modules>
+        <module>account-service</module>
     </modules>
 
 </project>
