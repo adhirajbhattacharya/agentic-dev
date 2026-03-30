@@ -15,12 +15,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AccountService {
 
+    public record CreateResult(Account account, boolean created) {}
+
     private final AccountRepository accountRepository;
 
-    public Account create(String email) {
-        Account account = new Account();
-        account.setEmail(email);
-        return accountRepository.save(account);
+    public CreateResult create(String email) {
+        return accountRepository.findByEmail(email)
+                .map(a -> new CreateResult(a, false))
+                .orElseGet(() -> {
+                    Account account = new Account();
+                    account.setEmail(email);
+                    return new CreateResult(accountRepository.save(account), true);
+                });
     }
 
     public List<Account> findAll() {
