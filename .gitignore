@@ -40,3 +40,8 @@ $RECYCLE.BIN/
 # ===========================
 *.pid
 spring-shell.log
+
+# ===========================
+# Claude Code
+# ===========================
+.claude/settings.local.json
